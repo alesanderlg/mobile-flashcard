@@ -17,3 +17,7 @@ export const getDecks = async () => {
   const data = JSON.parse(results)
   return data;
 };
+
+export const removeAllDecks = async () =>{
+  await AsyncStorage.getAllKeys().then(AsyncStorage.multiRemove)
+}

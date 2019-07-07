@@ -8,10 +8,17 @@ import {
   StyleSheet,
   View,
   Text,
-  FlatList
+  FlatList,
+  TouchableOpacity
 } from 'react-native'
 
 class DecksScreen extends Component {
+
+  static navigationOptions = () => {
+    return {
+      title: 'Decks',
+    };
+  }
 
   state = {
     loading: false
@@ -49,22 +56,18 @@ class DecksScreen extends Component {
         </View>
       ) : (
         <View style={styles.blank}>
-          <Text style={{ fontSize: 18 }}>You don't have any decks yet.</Text>
-          <StyledButton
-            onPress={() => {
-              navigation.navigate("AddDeck");
-            }}
-          >
-            Create Deck
-          </StyledButton>
+          <Text style={styles.message}>What a pity! You don't have any decks.</Text>
+          <TouchableOpacity style={styles.buttonCreateDeck}
+              onPress={() => {
+                navigation.navigate("NewDeck");
+              }}
+            >
+              <Text style={styles.labelButton}> Create Deck </Text>
+            </TouchableOpacity>
         </View>
       );
     }
   }
-}
-
-DecksScreen.navigationOptions = {
-  header: null
 }
 
 const styles = StyleSheet.create({
@@ -73,6 +76,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     alignItems: 'center' 
   },
+  buttonCreateDeck: {
+    borderRadius: 5,
+    backgroundColor: '#4799FC',
+    margin: 10,
+    padding: 15,
+    width: 300
+  },
+  labelButton:{
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "bold",
+    color: '#FFFFFF'
+  },
+  message: {
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 24,
+    fontWeight: "bold",
+    marginTop: 111, 
+    marginBottom: 45
+  },
+  blank: {
+  flex: 1,
+  backgroundColor: '#FFFFFF',
+  justifyContent: "center",
+  alignItems: "center"
+  }
 })
 
 const mapStateToProps = ( state ) =>{

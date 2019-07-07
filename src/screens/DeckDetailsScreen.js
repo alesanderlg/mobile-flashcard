@@ -17,22 +17,22 @@ class DeckDetailsScreen extends Component {
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>{deck.title}</Text>
-          <Text style={styles.count}>{`Card: ${deck.cards.length}`}</Text>
+          <Text style={styles.cards}>{`${deck.cards.length} cards`}</Text>
         </View>
         <View style={styles.buttons}>
-            <TouchableOpacity style={styles.buttonStartQuiz}
-              onPress={() => {
-                navigation.navigate("QuizScreen", { id: deck.id });
-              }}
-            >
-              <Text style={styles.labelButton}> Start Quiz </Text>
-            </TouchableOpacity>
             <TouchableOpacity style={styles.buttonAddCard}
               onPress={() => {
                 navigation.navigate("NewCard", { id: deck.id });
               }}
             >
               <Text style={styles.labelButton}> Add Card </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonStartQuiz}
+              onPress={() => {
+                navigation.navigate("QuizScreen", { id: deck.id });
+              }}
+            >
+              <Text style={styles.labelButton}> Start Quiz </Text>
             </TouchableOpacity>
         </View>
       </View>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 5
   },
-  count: {
+  cards: {
     fontSize: 20,
     textAlign: "center",
     marginBottom: 5
