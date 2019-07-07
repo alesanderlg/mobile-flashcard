@@ -5,6 +5,8 @@ import QuizCard from "../components/QuizCard"
 import QuizActions from "../components/QuizActions"
 import QuizResults from "../components/QuizResuts"
 
+import {clearLocalNotification, setLocalNotification} from '../utils/notification'
+
 const defaultState = {
   correctAnswer: 0,
   incorrectAnswer: 0,
@@ -19,8 +21,8 @@ class QuizScreen extends Component {
   state = defaultState
 
   resultSummary = (correctAnswer, incorrectAnswer) => {
-    return this.props.navigation.getParam("deck").cards.length -
-    (correctAnswer + incorrectAnswer)
+    const totalCards = this.props.navigation.getParam("deck").cards.length
+    return totalCards - (correctAnswer + incorrectAnswer)
   }
 
   retrieveDeck = () => {
@@ -29,8 +31,9 @@ class QuizScreen extends Component {
 
   getRemainingMessage = () => {
     const { correctAnswer, incorrectAnswer} = this.state
+    const totalCards = this.props.navigation.getParam("deck").cards.length
     const remainingQuestions =this.resultSummary(correctAnswer, incorrectAnswer)
-    return `${remainingQuestions} question, ${remainingQuestions} remaining.`
+    return `${remainingQuestions} question, ${totalCards} remaining.`
   }
 
   restartQuiz = () => {
@@ -53,7 +56,9 @@ class QuizScreen extends Component {
 
     const deck = this.retrieveDeck()
     if (currentQuestionIndex === deck.cards.length - 1) {
-      showResults = true;
+      showResults = true
+      clearLocalNotification()
+      setLocalNotification()
     } else {
       currentQuestionIndex++
     }
