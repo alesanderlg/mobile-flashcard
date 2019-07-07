@@ -22,14 +22,14 @@ class DeckDetailsScreen extends Component {
         <View style={styles.buttons}>
             <TouchableOpacity style={styles.buttonAddCard}
               onPress={() => {
-                navigation.navigate("NewCard", { id: deck.id });
+                navigation.navigate("NewCard", { deckId: deck.id });
               }}
             >
               <Text style={styles.labelButton}> Add Card </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonStartQuiz}
               onPress={() => {
-                navigation.navigate("QuizScreen", { id: deck.id });
+                navigation.navigate("QuizScreen", { deckId: deck.id });
               }}
             >
               <Text style={styles.labelButton}> Start Quiz </Text>

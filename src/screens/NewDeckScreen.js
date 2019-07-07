@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { addNewDeck } from '../redux/actions'
 import { saveDeck } from '../utils/storage'
 import uuidv4 from 'uuid/v4'
 import {
   StyleSheet,
+  View,
   Text,
   TextInput,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  TouchableOpacity
 } from 'react-native'
 class NewDeckScreen extends Component {
   state = {
@@ -79,10 +80,12 @@ const styles = StyleSheet.create({
     marginBottom: 45 
   },
   input: {
-    width: 240,
+    width: 350,
     height: 44,
     borderWidth: 1,  
     margin: 20,
+    padding: 10,
+    fontSize: 20,
     borderColor: '#DCDCDD'
   },
   buttons: {
