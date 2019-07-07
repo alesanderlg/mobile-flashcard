@@ -2,23 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { receiveDecks } from '../redux/actions'
 import { getDecks } from '../utils/storage'
-import DeckSumUp from '../components/DeckSumUp'
+
+import Decks from '../components/Decks'
 
 import {
   StyleSheet,
   View,
   Text,
-  FlatList,
   TouchableOpacity
 } from 'react-native'
 
 class DecksScreen extends Component {
-
-  static navigationOptions = () => {
-    return {
-      title: 'Decks',
-    };
-  }
 
   state = {
     loading: false
@@ -28,8 +22,8 @@ class DecksScreen extends Component {
     getDecks()
       .then(decks => this.props.dispatch(receiveDecks(decks)))
       .then(() => {
-        this.setState({ loading: true });
-      });
+        this.setState({ loading: true })
+      })
   }
 
   render() {
@@ -42,18 +36,7 @@ class DecksScreen extends Component {
       );
     } else {
       return Object.values(decks).length > 0 ? (
-        <View style={styles.container}>
-        <FlatList
-          data={Object.values(decks)}
-          renderItem={({ item }) => (
-            <DeckSumUp
-              deck={item}
-              navigation={this.props.navigation}
-            />
-          )}
-          keyExtractor={(item, index) => item.title}
-        />
-        </View>
+        <Decks decks={decks} navigation={navigation} />
       ) : (
         <View style={styles.blank}>
           <Text style={styles.message}>What a pity! You don't have any decks.</Text>
@@ -61,21 +44,16 @@ class DecksScreen extends Component {
               onPress={() => {
                 navigation.navigate("NewDeck");
               }}
-            >
+          >
               <Text style={styles.labelButton}> Create Deck </Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
         </View>
-      );
+      )
     }
   }
 }
 
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center' 
-  },
   buttonCreateDeck: {
     borderRadius: 5,
     backgroundColor: '#4799FC',

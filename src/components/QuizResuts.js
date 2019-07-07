@@ -1,16 +1,12 @@
 import React from "react"
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native"
 
-const QuizResuts = ({
-  correctAnswerCount,
-  incorrectAnswerCount,
-  restartQuiz,
-  navigation
-}) => (
+const QuizResuts = ({correctAnswer,incorrectAnswer,restartQuiz, navigation}) => (
+  
   <View style={styles.container}>
     <Text style={styles.header}>You scored</Text>
     <Text style={styles.result}>{`${Math.round(
-      (correctAnswerCount * 100) / (correctAnswerCount + incorrectAnswerCount)
+      (correctAnswer * 100) / (correctAnswer + incorrectAnswer)
     )} %`}</Text>
     <View style={styles.buttons}>
             <TouchableOpacity 

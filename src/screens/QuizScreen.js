@@ -6,8 +6,8 @@ import QuizActions from "../components/QuizActions"
 import QuizResults from "../components/QuizResuts"
 
 const defaultState = {
-  correctAnswerCount: 0,
-  incorrectAnswerCount: 0,
+  correctAnswer: 0,
+  incorrectAnswer: 0,
   currentQuestionIndex: 0, 
   showResults: false
 }
@@ -18,9 +18,9 @@ class QuizScreen extends Component {
 
   state = defaultState
 
-  resultSummary = (correctAnswerCount, incorrectAnswerCount) => {
+  resultSummary = (correctAnswer, incorrectAnswer) => {
     return this.props.navigation.getParam("deck").cards.length -
-    (correctAnswerCount + incorrectAnswerCount + 1)
+    (correctAnswer + incorrectAnswer)
   }
 
   retrieveDeck = () => {
@@ -28,8 +28,8 @@ class QuizScreen extends Component {
   }
 
   getRemainingMessage = () => {
-    const { correctAnswerCount, incorrectAnswerCount } = this.state
-    const remainingQuestions =this.resultSummary(correctAnswerCount, incorrectAnswerCount)
+    const { correctAnswer, incorrectAnswer} = this.state
+    const remainingQuestions =this.resultSummary(correctAnswer, incorrectAnswer)
     return `${remainingQuestions} question, ${remainingQuestions} remaining.`
   }
 
@@ -39,31 +39,28 @@ class QuizScreen extends Component {
 
   recordAnswer = knewAnswer => {
     let {
-      correctAnswerCount,
-      incorrectAnswerCount,
+      correctAnswer,
+      incorrectAnswer,
       showResults,
       currentQuestionIndex
     } = this.state
 
-
     if (knewAnswer) {
-      correctAnswerCount++
+      correctAnswer++
     } else {
-      incorrectAnswerCount++
+      incorrectAnswer++
     }
 
     const deck = this.retrieveDeck()
     if (currentQuestionIndex === deck.cards.length - 1) {
-      // time to show results.
       showResults = true;
-
     } else {
       currentQuestionIndex++
     }
 
     this.setState(state => ({
-      correctAnswerCount,
-      incorrectAnswerCount,
+      correctAnswer,
+      incorrectAnswer,
       showResults,
       currentQuestionIndex
     }))
@@ -71,8 +68,8 @@ class QuizScreen extends Component {
 
   render() {
     const {
-      correctAnswerCount,
-      incorrectAnswerCount,
+      correctAnswer,
+      incorrectAnswer,
       currentQuestionIndex,
       showResults
     } = this.state
@@ -85,8 +82,8 @@ class QuizScreen extends Component {
       </View>
     ) : (
       <QuizResults
-        correctAnswerCount={correctAnswerCount}
-        incorrectAnswerCount={incorrectAnswerCount}
+        correctAnswer={correctAnswer}
+        incorrectAnswer={incorrectAnswer}
         restartQuiz={this.restartQuiz}
         navigation={this.props.navigation}
       />
