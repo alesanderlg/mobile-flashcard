@@ -1,55 +1,63 @@
 import React, { Component } from 'react'
-import { Button, Input } from 'react-native-elements'
+import { View, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { saveDeck } from '../redux/actions/actionsCreator'
-
+import { addNewDeck } from '../redux/actions'
+import { saveDeck } from '../utils/storage'
 import uuidv4 from 'uuid/v4'
 import {
   StyleSheet,
-  View,
-  Text
+  Text,
+  TextInput,
+  KeyboardAvoidingView
 } from 'react-native'
-
 class NewDeckScreen extends Component {
   state = {
-    deck : {
-      id: uuidv4(),
-      title: '',
-      cards : [],
-      score: 0
-      }
+    title: ''
   }
 
   handleSubmit = () => {
-    const deck = {...this.state.deck}
-    this.props.saveDeck(deck)
-    this.setState({
-      deck: {}
+    const deck = {
+      id: uuidv4(),
+      title: this.state.title,
+      cards : [],
+      score: 0
+  }
+
+  this.props.dispatch(addNewDeck({
+    [deck.id]: deck
+  }))  
+  
+  saveDeck(deck)
+    this.setState({ title: ''})
+    this.props.navigation.navigate("DeckDetails", {
+      id: deck.id,
+      title: deck.title
     })
   }
 
-  handleTitle = (title) => {
-    let deck = {...this.state.deck}
-    deck.title = title
-    this.setState(() => ({ deck }))
+  handleTitleChange = (title) => {
+    this.setState(() => ({ title }))
   }
   
   render(){
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView style={styles.container} behavior='padding'>
             <Text style={styles.label}>What is the new title of your new deck?</Text>
-            <Input 
-              value={this.state.deck.title}
+            <TextInput
               style={styles.input}
               placeholder='Deck Title'
-              onChangeText={this.handleTitle}
+              onChangeText={(title) => this.setState({title})}
+              value={this.state.title}
             />
-            <Button 
-              style={styles.button}
-              title="Submit"
-              onPress={this.handleSubmit}
-            />
-        </View>
+            <View style={styles.buttons}>
+              <TouchableOpacity 
+                style={styles.button}
+                onPress={this.handleSubmit}
+              >
+                <Text style={styles.labelButton}> Submit </Text>
+              </TouchableOpacity>
+            </View>
+        </KeyboardAvoidingView>
     )
   }
 }
@@ -70,17 +78,35 @@ const styles = StyleSheet.create({
     marginTop: 111, 
     marginBottom: 45 
   },
-  input: { 
-      fontSize: 16
+  input: {
+    width: 240,
+    height: 44,
+    borderWidth: 1,  
+    margin: 20,
+    borderColor: '#DCDCDD'
   },
-  button: { 
-    marginTop: 20, 
-    width: 100
-},
+  buttons: {
+    marginTop: 20
+  },
+  button: {
+    borderRadius: 5,
+    backgroundColor: '#4799FC',
+    textAlign: 'center',
+    margin: 10,
+    padding: 15,
+    width: 300
+  },
+  labelButton:{
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "bold",
+    color: '#FFFFFF'
+  },
 })
+const mapStateToProps = ( state )=> {
+  return {
+    deck: state
+  }
+}
 
-const mapDispatchToProps = dispatch => ({
-  saveDeck: (id,deck) => dispatch(saveDeck(id,deck))
-})
-
-export default connect(null, mapDispatchToProps) (NewDeckScreen)
+export default connect(mapStateToProps, null) (NewDeckScreen)
