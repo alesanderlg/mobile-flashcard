@@ -40,24 +40,24 @@ const styles = StyleSheet.create({
       width: 300
     },
     labelButton:{
-      textAlign: "center",
+      textAlign: 'center',
       fontSize: 18,
-      fontWeight: "bold",
+      fontWeight: 'bold',
       color: '#FFFFFF'
     },
     message: {
-      fontWeight: "bold",
-      textAlign: "center",
+      fontWeight: 'bold',
+      textAlign: 'center',
       fontSize: 24,
-      fontWeight: "bold",
+      fontWeight: 'bold',
       marginTop: 111, 
       marginBottom: 45
     },
     blank: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center'
     }
 })
 

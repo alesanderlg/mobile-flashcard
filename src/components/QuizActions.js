@@ -22,13 +22,13 @@ const QuizActions = ({ recordAnswer }) => (
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 50
   },
   actions: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 20
   },
   answerBtn: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     textAlign: "center",
     fontSize: 20,
-    fontWeight: "bold"
+    fontWeight: 'bold'
   }
 })
 

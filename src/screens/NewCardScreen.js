@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   KeyboardAvoidingView,
   View,
@@ -7,13 +7,13 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity
-} from "react-native"
-import { addNewCard } from "../redux/actions"
-import { saveCard } from "../utils/storage"
+} from 'react-native'
+import { addNewCard } from '../redux/actions'
+import { saveCard } from '../utils/storage'
 
 class NewCardScreen extends Component {
   static navigationOptions = () => ({
-    title: "Add Card"
+    title: 'Add Card'
   })
 
   state = {
@@ -22,9 +22,9 @@ class NewCardScreen extends Component {
   }
 
   handleSubmit = () => {
-    const deckId = this.props.navigation.getParam("deckId")
+    const deckId = this.props.navigation.getParam('deckId')
     const { question, answer } = this.state;
-    console.log("deckId", deckId)
+  
     this.props.addNewCard(deckId, question, answer)
     saveCard(deckId, { question, answer })
 
@@ -39,7 +39,7 @@ class NewCardScreen extends Component {
   render() {
     const { question, answer } = this.state;
     return (
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <View style={styles.element}>
           <Text style={styles.label}>What's the question?</Text>
           <TextInput
@@ -73,8 +73,8 @@ class NewCardScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   element: {
     margin: 20
@@ -84,9 +84,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   labelButton:{
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: '#FFFFFF'
   },
   input: {

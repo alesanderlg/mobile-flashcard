@@ -1,5 +1,5 @@
-import React from "react"
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native"
+import React from 'react'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 const QuizResuts = ({correctAnswer,incorrectAnswer,restartQuiz, navigation}) => (
   
@@ -29,8 +29,8 @@ const QuizResuts = ({correctAnswer,incorrectAnswer,restartQuiz, navigation}) => 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#FFFFFF'
   },
   buttons: {
@@ -51,20 +51,20 @@ const styles = StyleSheet.create({
     width: 300
   },
   labelButton:{
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: '#FFFFFF'
   },
   header: {
     fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center"
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
   result: {
     fontSize: 70,
     color: '#F2955E',
-    textAlign: "center"
+    textAlign: 'center'
   },
   actions: {
     marginTop: 50

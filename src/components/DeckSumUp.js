@@ -6,7 +6,7 @@ const DeckSumUp = ({ deck, navigation }) => {
         <TouchableOpacity
             style={styles.container}
             onPress={() =>
-                navigation.navigate("DeckDetails", 
+                navigation.navigate('DeckDetails', 
                     { 
                       id: deck.id, 
                       title: deck.title 
@@ -22,7 +22,7 @@ const DeckSumUp = ({ deck, navigation }) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: "center",
+      justifyContent: 'center',
       backgroundColor: '#FFFFFF',
       minHeight: 150,
       marginBottom: 10,
@@ -34,21 +34,21 @@ const styles = StyleSheet.create({
       width: 350,
     },
     title: {
-        fontWeight: "bold",
-        textAlign: "center",
+        fontWeight: 'bold',
+        textAlign: 'center',
         fontSize: 18,
-        fontWeight: "bold",
+        fontWeight: 'bold',
         marginBottom: 5
     },
     count: {
       fontSize: 20,
-      textAlign: "center",
+      textAlign: 'center',
       color: '#DCDCDD',
       marginBottom: 5
     },
     cards: {
         fontSize: 20,
-        textAlign: "center",
+        textAlign: 'center',
         marginBottom: 5
       },
   });

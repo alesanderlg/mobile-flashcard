@@ -30,7 +30,7 @@ class NewDeckScreen extends Component {
   
   saveDeck(deck)
     this.setState({ title: ''})
-    this.props.navigation.navigate("DeckDetails", {
+    this.props.navigation.navigate('DeckDetails', {
       id: deck.id,
       title: deck.title
     })
@@ -71,8 +71,8 @@ NewDeckScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   label: {
     fontSize: 36,
@@ -109,9 +109,9 @@ const styles = StyleSheet.create({
     width: 300
   },
   labelButton:{
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: '#FFFFFF'
   },
 })

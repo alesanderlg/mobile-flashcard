@@ -1,9 +1,9 @@
-import React, { Component } from "react"
-import { View, Text, StyleSheet } from "react-native"
+import React, { Component } from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
-import QuizCard from "../components/QuizCard"
-import QuizActions from "../components/QuizActions"
-import QuizResults from "../components/QuizResuts"
+import QuizCard from '../components/QuizCard'
+import QuizActions from '../components/QuizActions'
+import QuizResults from '../components/QuizResuts'
 
 import {clearLocalNotification, setLocalNotification} from '../utils/notification'
 
@@ -15,23 +15,23 @@ const defaultState = {
 }
 class QuizScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: `${navigation.getParam("deck").title} Quiz`
+    title: `${navigation.getParam('deck').title} Quiz`
   })
 
   state = defaultState
 
   resultSummary = (correctAnswer, incorrectAnswer) => {
-    const totalCards = this.props.navigation.getParam("deck").cards.length
+    const totalCards = this.props.navigation.getParam('deck').cards.length
     return totalCards - (correctAnswer + incorrectAnswer)
   }
 
   retrieveDeck = () => {
-    return this.props.navigation.getParam("deck")
+    return this.props.navigation.getParam('deck')
   }
 
   getRemainingMessage = () => {
     const { correctAnswer, incorrectAnswer} = this.state
-    const totalCards = this.props.navigation.getParam("deck").cards.length
+    const totalCards = this.props.navigation.getParam('deck').cards.length
     const remainingQuestions =this.resultSummary(correctAnswer, incorrectAnswer)
     return `${remainingQuestions} question, ${totalCards} remaining.`
   }
@@ -99,7 +99,7 @@ class QuizScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     backgroundColor: '#FFFFFF',
     padding: 10
   },

@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native"
+import React, { Component } from 'react'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 class QuizCard extends Component {
   state = {
@@ -29,7 +29,7 @@ class QuizCard extends Component {
                 style={styles.button}
                 onPress={this.toggleQuestion}
             >
-              <Text style={styles.labelButton}> {`See ${showQuestion ? "Answer" : "Question"}`} </Text>
+              <Text style={styles.labelButton}> {`See ${showQuestion ? 'Answer' : 'Question'}`} </Text>
             </TouchableOpacity>
         </View>
       </View>
@@ -39,8 +39,8 @@ class QuizCard extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#4799FC',
     padding: 30,
     width: 350,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     shadowRadius: 5,
     shadowOpacity: 0.8,
-    shadowColor: "rgba(0, 0, 0, 0.24)",
+    shadowColor: 'rgba(0, 0, 0, 0.24)',
     shadowOffset: {
       width: 4,
       height: 5
@@ -63,15 +63,15 @@ const styles = StyleSheet.create({
     width: 300
   },
   labelButton:{
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: '#FFFFFF'
   },
   text: {
     fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "center",
+    fontWeight: 'bold',
+    textAlign: 'center',
     color: '#FFFFFF'
   }
 })

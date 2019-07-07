@@ -26,9 +26,9 @@ const Tabs = createBottomTabNavigator({
         activeBackgroundColor: '#F2785C',
         inactiveTintColor: '#666', 
         labelStyle: {
-          textAlign: "center",
+          textAlign: 'center',
           fontSize: 18,
-          fontWeight: "bold",
+          fontWeight: 'bold',
           padding: 5
         }
     }
@@ -52,7 +52,7 @@ const MainNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: 'Home'
   }
 );
 
