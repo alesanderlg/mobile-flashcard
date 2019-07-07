@@ -52,8 +52,9 @@ class NewDeckScreen extends Component {
             />
             <View style={styles.buttons}>
               <TouchableOpacity 
-                style={styles.button}
+                style={this.state.title === '' ? styles.buttonDisabled : styles.buttonEnabled }
                 onPress={this.handleSubmit}
+                disabled={this.state.title === ''}
               >
                 <Text style={styles.labelButton}> Submit </Text>
               </TouchableOpacity>
@@ -91,9 +92,17 @@ const styles = StyleSheet.create({
   buttons: {
     marginTop: 20
   },
-  button: {
+  buttonEnabled: {
     borderRadius: 5,
     backgroundColor: '#4799FC',
+    textAlign: 'center',
+    margin: 10,
+    padding: 15,
+    width: 300
+  },
+  buttonDisabled: {
+    borderRadius: 5,
+    backgroundColor: '#DCDCDD',
     textAlign: 'center',
     margin: 10,
     padding: 15,

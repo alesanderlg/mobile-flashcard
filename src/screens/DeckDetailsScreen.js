@@ -1,14 +1,13 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native"
-import { Button } from 'react-native-elements'
 
 class DeckDetailsScreen extends Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam('title'),
-    };
+    }
   }
     
   render() {
@@ -22,21 +21,22 @@ class DeckDetailsScreen extends Component {
         <View style={styles.buttons}>
             <TouchableOpacity style={styles.buttonAddCard}
               onPress={() => {
-                navigation.navigate("NewCard", { deckId: deck.id });
+                navigation.navigate("NewCard", { deckId: deck.id })
               }}
             >
               <Text style={styles.labelButton}> Add Card </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonStartQuiz}
+            <TouchableOpacity style={deck.cards.length < 1 ? styles.buttonStartQuizDisabled : styles.buttonStartQuizEnabled}
               onPress={() => {
-                navigation.navigate("QuizScreen", { deckId: deck.id });
+                navigation.navigate("QuizScreen", { deck })
               }}
+              disabled={deck.cards.length < 1}
             >
               <Text style={styles.labelButton}> Start Quiz </Text>
             </TouchableOpacity>
         </View>
       </View>
-    );
+    )
   }
 }
 
@@ -68,12 +68,19 @@ const styles = StyleSheet.create({
     padding: 15,
     width: 300
   },
-  buttonStartQuiz: {
+  buttonStartQuizEnabled: {
     borderRadius: 5,
-    backgroundColor: '#58A690',
     margin: 10,
     padding: 15,
-    width: 300
+    width: 300,
+    backgroundColor: '#58A690',
+  },
+  buttonStartQuizDisabled: {
+    borderRadius: 5,
+    margin: 10,
+    padding: 15,
+    width: 300,
+    backgroundColor: '#DCDCDD',
   },
   labelButton:{
     textAlign: "center",
