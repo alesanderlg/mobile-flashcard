@@ -13,7 +13,8 @@ import {
 } from 'react-native'
 class NewDeckScreen extends Component {
   state = {
-    title: ''
+    title: '',
+    disabled: true
   }
 
   handleSubmit = () => {
@@ -36,25 +37,29 @@ class NewDeckScreen extends Component {
     })
   }
 
-  handleTitleChange = (title) => {
+  handleTitleChange = title => {
     this.setState(() => ({ title }))
+    if(this.state.title !== '' && this.state.title.length > 3){
+      this.setState(() => ({ disabled: false }))
+    }
   }
   
   render(){
+    const { title, disabled } = this.state
     return (
         <KeyboardAvoidingView style={styles.container} behavior='padding'>
             <Text style={styles.label}>What is the new title of your new deck?</Text>
             <TextInput
               style={styles.input}
               placeholder='Deck Title'
-              onChangeText={(title) => this.setState({title})}
-              value={this.state.title}
+              onChangeText={(title) => this.handleTitleChange(title) }
+              value={title}
             />
             <View style={styles.buttons}>
               <TouchableOpacity 
-                style={this.state.title === '' ? styles.buttonDisabled : styles.buttonEnabled }
+                style={disabled ? styles.buttonDisabled : styles.buttonEnabled }
                 onPress={this.handleSubmit}
-                disabled={this.state.title === ''}
+                disabled={disabled}
               >
                 <Text style={styles.labelButton}> Submit </Text>
               </TouchableOpacity>

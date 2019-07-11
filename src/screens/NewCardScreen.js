@@ -18,7 +18,8 @@ class NewCardScreen extends Component {
 
   state = {
     question: "",
-    answer: ""
+    answer: "",
+    disabled: true
   }
 
   handleSubmit = () => {
@@ -32,12 +33,31 @@ class NewCardScreen extends Component {
 
     this.setState({
         question: "",
-        answer: ""
+        answer: "",
+        disabled: true
     })
   }
 
+  validationForm = () =>{
+    if(this.state.question.length > 2 && this.state.answer.length  > 2){           
+      this.setState(() => ({ disabled: false }))
+    }else{
+      this.setState(() => ({ disabled: true }))
+    }
+  }
+
+  handleQuestionChange = question => {
+    this.setState(() => ({ question }))
+    this.validationForm()
+  }
+
+  handleAnswerChange = answer => {
+    this.setState(() => ({ answer }))
+    this.validationForm()
+  }
+
   render() {
-    const { question, answer } = this.state;
+    const { question, answer, disabled } = this.state;
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <View style={styles.element}>
@@ -46,7 +66,7 @@ class NewCardScreen extends Component {
             style={styles.input}
             value={question}
             placeholder="e.g. What's React native?"
-            onChangeText={question => this.setState({ question })}
+            onChangeText={(question) => this.handleQuestionChange(question)}
           />
         </View>
         <View style={styles.element}>
@@ -55,13 +75,14 @@ class NewCardScreen extends Component {
             style={styles.input}
             value={answer}
             placeholder="e.g. React Native is a JavaScript framework."
-            onChangeText={answer => this.setState({ answer })}
+            onChangeText={(answer) => this.handleAnswerChange(answer)}
           />
         </View>
         <View style={styles.buttons}>
               <TouchableOpacity 
-                style={styles.button}
+                style={disabled ? styles.buttonDisabled : styles.buttonEnabled }
                 onPress={this.handleSubmit}
+                disabled={disabled}
               >
                 <Text style={styles.labelButton}> Submit </Text>
               </TouchableOpacity>
@@ -101,9 +122,17 @@ const styles = StyleSheet.create({
   buttons: {
     marginTop: 20
   },
-  button: {
+  buttonEnabled: {
     borderRadius: 5,
     backgroundColor: '#4799FC',
+    textAlign: 'center',
+    margin: 10,
+    padding: 15,
+    width: 300
+  },
+  buttonDisabled: {
+    borderRadius: 5,
+    backgroundColor: '#DCDCDD',
     textAlign: 'center',
     margin: 10,
     padding: 15,

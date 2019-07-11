@@ -5,8 +5,6 @@ import QuizCard from '../components/QuizCard'
 import QuizActions from '../components/QuizActions'
 import QuizResults from '../components/QuizResuts'
 
-import {clearLocalNotification, setLocalNotification} from '../utils/notification'
-
 const defaultState = {
   correctAnswer: 0,
   incorrectAnswer: 0,
@@ -57,8 +55,6 @@ class QuizScreen extends Component {
     const deck = this.retrieveDeck()
     if (currentQuestionIndex === deck.cards.length - 1) {
       showResults = true
-      clearLocalNotification()
-      setLocalNotification()
     } else {
       currentQuestionIndex++
     }

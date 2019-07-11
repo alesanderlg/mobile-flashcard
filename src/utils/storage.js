@@ -12,7 +12,7 @@ export async function saveDeck (deck) {
   }
 }
 
-export const saveCard = async (deckId, card) => {
+export const saveCard = async (deckId, question, answer) => {
   const results = await AsyncStorage.getItem(KEY);
   const data = JSON.parse(results);
   
@@ -20,7 +20,7 @@ export const saveCard = async (deckId, card) => {
     ...data[deckId],
     cards: [
       ...data[deckId].cards,
-      { question: card.question, answer: card.answer }
+      { question: question, answer: answer }
     ]
   }
   AsyncStorage.setItem(KEY, JSON.stringify(data));

@@ -24,5 +24,9 @@ This repository was bootstrapped using the `create-react-native-app`. The follow
     - `/screens`: contains all screen presentations 
     - `/utils`: contains all common 
 
+## Platforms
+
+* This app was tested for iOS 12.2 iPhone X using the Expo
+
 ## Additional dependencies
 

@@ -16,11 +16,12 @@ export const receiveDecks = (decks) => {
     }
 }
 
-export const addNewCard = (deckId, card) => {
+export const addNewCard = (deckId, question, answer) => {
     return {
         type: ADD_NEW_CARD,
         deckId,
-        card
+        question,
+        answer
     }
 }
 
